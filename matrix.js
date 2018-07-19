@@ -16,7 +16,7 @@ class matrix{
 	}
 	
 	row(i){
-		if(i>=this.size[0] || i<0 || !i.isInteger())throw{"Out of range."};
+		if(i>=this.size[0] || i<0 || !Number.isInteger(i))throw{"Out of range."};
 		let arr=[];
 		for(let j=0; j<this.size[1];j++){
 			arr[j]=this.cells[this.size[1]*i+j];
@@ -25,7 +25,7 @@ class matrix{
 	}
 	
 	col(j){
-		if(j>=this.size[1] || j<0 || !j.isInteger())throw{"Out of range."};
+		if(j>=this.size[1] || j<0 || !Number.isInteger(j))throw{"Out of range."};
 		let arr=[];
 		for(let i=0; i<this.size[0];i++){
 			arr[i]=this.cells[this.size[1]*i+j];
