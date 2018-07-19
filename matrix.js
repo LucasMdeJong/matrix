@@ -1,6 +1,6 @@
 class matrix{
 	constructor(rows,cols,cells){
-		if(rows*cols!==cells.length) throw("Matrix data must agree.")
+		if(rows*cols!==cells.length) throw "Matrix data must agree."
 		this.size=[rows,cols];
 		this.cells=cells;
 	}
@@ -16,7 +16,7 @@ class matrix{
 	}
 	
 	row(i){
-		if(i>=this.size[0] || i<0 || !Number.isInteger(i))throw{"Out of range."};
+		if(i>=this.size[0] || i<0 || !Number.isInteger(i)) throw "Out of range.";
 		let arr=[];
 		for(let j=0; j<this.size[1];j++){
 			arr[j]=this.cells[this.size[1]*i+j];
@@ -25,7 +25,7 @@ class matrix{
 	}
 	
 	col(j){
-		if(j>=this.size[1] || j<0 || !Number.isInteger(j))throw{"Out of range."};
+		if(j>=this.size[1] || j<0 || !Number.isInteger(j)) throw "Out of range.";
 		let arr=[];
 		for(let i=0; i<this.size[0];i++){
 			arr[i]=this.cells[this.size[1]*i+j];
@@ -34,7 +34,7 @@ class matrix{
 	}
 	
 	static sum(a,b){
-		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw{"Matrix dimensions must agree."};
+		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw "Matrix dimensions must agree.";
 		let newCells=[];
 		for(let i=0;i<a.cells.length;i++){
 			newCells[i]=a.cells[i]+b.cells[i];
@@ -43,7 +43,7 @@ class matrix{
 	}
 	
 	static substract(a,b){
-		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw{"Matrix dimensions must agree."};
+		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw "Matrix dimensions must agree.";
 		let newCells=[];
 		for(let i=0;i<a.cells.length;i++){
 			newCells[i]=a.cells[i]-b.cells[i];
@@ -52,7 +52,7 @@ class matrix{
 	}
 	
 	static multiply(a,b){
-		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw{"Matrix dimensions must agree."};
+		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw "Matrix dimensions must agree.";
 		let newCells=[];
 		for(let i=0;i<a.cells.length;i++){
 			newCells[i]=a.cells[i]*b.cells[i];
@@ -61,7 +61,7 @@ class matrix{
 	}
 	
 	static divide(a,b){
-		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw{"Matrix dimensions must agree."};
+		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw "Matrix dimensions must agree.";
 		let newCells=[];
 		for(let i=0;i<a.cells.length;i++){
 			newCells[i]=a.cells[i]/b.cells[i];
@@ -70,7 +70,7 @@ class matrix{
 	}
 	
 	static dot(a,b){
-		if(a.size[1]!==b.size[0]) throw{"Matrix dimensions must agree."};
+		if(a.size[1]!==b.size[0]) throw "Matrix dimensions must agree.";
 		let newCells=[];
 		let sum=0;
 		for(let i=0;i<a.size[0];i++){
