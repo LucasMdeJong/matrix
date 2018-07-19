@@ -21,7 +21,7 @@ class matrix{
 		for(let j=0; j<this.size[1];j++){
 			arr[j]=this.cells[this.size[1]*i+j];
 		};
-		return arr;
+		return new matrix(1,this,size[1],arr);
 	}
 	
 	col(j){
@@ -30,7 +30,7 @@ class matrix{
 		for(let i=0; i<this.size[0];i++){
 			arr[i]=this.cells[this.size[1]*i+j];
 		};
-		return arr;
+		return new matrix(this.size[0],1,arr);
 	}
 	
 	static sum(a,b){
