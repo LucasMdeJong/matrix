@@ -60,6 +60,15 @@ class matrix{
 		return new matrix(a.size[0],a.size[1],newCells);
 	}
 	
+	static scmultiply(a,b){
+		if(!isNaN(a)) throw "Matrix dimensions must agree.";
+		let newCells=[];
+		for(let i=0;i<b.cells.length;i++){
+			newCells[i]=a*b.cells[i];
+		};
+		return new matrix(b.size[0],b.size[1],newCells);
+	}
+	
 	static divide(a,b){
 		if(a.size[0]!==b.size[0] || a.size[1]!==b.size[1]) throw "Matrix dimensions must agree.";
 		let newCells=[];
@@ -85,4 +94,28 @@ class matrix{
 		return new matrix(a.size[0],b.size[1],newCells);
 	}
 	
+	static zeros(rows,cols){
+		let cells=[];
+		for(i=0;i<rows*cols;i++){
+			cells[i]=0;
+		};
+		return new matrix(rows,cols,cells);
+	}
+	
+	static ones(rows,cols){
+		let cells=[];
+		for(i=0;i<rows*cols;i++){
+			cells[i]=1;
+		};
+		return new matrix(rows,cols,cells);
+	}
+	
+	static eye(size){
+		let cells=[];
+		for(i=0;i<size**2;i++){
+			cells[i]=0;
+			if(i%(size+1)===0) cells[i]=1;
+		};
+		return new matrix(rows,cols,cells);
+	}
 }
