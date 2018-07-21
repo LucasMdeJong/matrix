@@ -34,6 +34,45 @@ class matrix{
 		return new matrix(this.size[0],this.size[1],newCells);
 	}
 	
+	sup(i,j){
+		if(this.size[0]===1 || this.size[1]===1) throw "It would result in an error matrix"
+		if(i>=this.size[0] || i<0 || !Number.isInteger(i)) throw "Out of range.";
+		if(j>=this.size[1] || j<0 || !Number.isInteger(j)) throw "Out of range.";
+		let newCells=[];
+		for(let k=0;k<this.size[0]*this.seize[1];k++){
+			if(k%this.size[1]===j || Math.floor(k/size[1])===i) continue
+			newCells.push(this.cells[k]);
+		}
+		return new matrix(this.size[0]-1,this.size[1]-1,newCells);
+	}
+	
+	det(){
+		if(this.size[0]!==this.size[1]) throw "Matrix dimensions must agree.";
+		if(this.size[0]===1) return this.cells[0];
+		let det=0;
+		for(let j=0;j<this.size[1];j++){
+			det+=this.cells[j]*((-1)**j)*this.sup(0,j).det();
+		};
+		return det;
+	}
+	
+	adjoint(){
+		if(this.size[0]!==this.size[1]) throw "Matrix dimensions must agree.";
+		if(this.size[0]===1) return new matrix(1,1,[1]);
+		let newCells=[];
+		for(i=0;i<this.size[0];i++){
+			for(j=0;j<this.size[1];j++){
+				newCells.push((-1)**(i+j)*this.sup(i,j).det())
+			}
+		}
+		return (new matrix(this.size[0],this.size[1],newCells)).transpose()
+	}
+	
+	inverse(){
+		if(this.det()===0) throw "Non invertible matrix.";
+		return matrix.scmultiply(1/this.det(),this.adjoint());
+	}
+	
 	row(i){
 		if(i>=this.size[0] || i<0 || !Number.isInteger(i)) throw "Out of range.";
 		let arr=[];
