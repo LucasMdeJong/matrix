@@ -15,6 +15,16 @@ class matrix{
 		return new matrix(this.size[1],this.size[0],newCells);
 	}
 	
+	exp(n){
+		if(this.size[0]!==this.size[1]) throw "Matrix dimensions must agree."
+		if(!Number.isInteger(n) || n<0) throw "Exponent is expected to be a non negative integer."
+		let ans=matrix.eye(this.size[0]);
+		for(let i=0;i<n;i++){
+			ans=matrix.multiply(this,ans);
+		};
+		return ans;
+	}
+	
 	row(i){
 		if(i>=this.size[0] || i<0 || !Number.isInteger(i)) throw "Out of range.";
 		let arr=[];
