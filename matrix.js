@@ -15,7 +15,7 @@ class matrix{
 		return new matrix(this.size[1],this.size[0],newCells);
 	}
 	
-	exp(n){
+	dotexp(n){
 		if(this.size[0]!==this.size[1]) throw "Matrix dimensions must agree."
 		if(!Number.isInteger(n) || n<0) throw "Exponent is expected to be a non negative integer."
 		let ans=matrix.eye(this.size[0]);
@@ -23,6 +23,15 @@ class matrix{
 			ans=matrix.multiply(this,ans);
 		};
 		return ans;
+	}
+	
+	exp(n){
+		if(isNaN(n)) throw "The exponent must be a number."
+		let newCells=[];
+		for(let i=0;i<this.cells.length;i++){
+			newCells[i]=this.cells[i]**n;
+		};
+		return new matrix(this.size[0],this.size[1],newCells);
 	}
 	
 	row(i){
@@ -71,7 +80,7 @@ class matrix{
 	}
 	
 	static scmultiply(a,b){
-		if(!isNaN(a)) throw "Matrix dimensions must agree.";
+		if(isNaN(a)) throw "Matrix dimensions must agree.";
 		let newCells=[];
 		for(let i=0;i<b.cells.length;i++){
 			newCells[i]=a*b.cells[i];
